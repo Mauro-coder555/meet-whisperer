@@ -1,4 +1,5 @@
 # utils/summarizer.py
+import torch
 from transformers import pipeline
 
 # Pipe se crea una sola vez (lazy-load en la 1ª llamada)
