@@ -1,0 +1,12 @@
+# --- Audio & transcripción
+git+https://github.com/openai/whisper.git
+soundfile>=0.12
+# Si quieres capturar micrófono en vivo
+pyaudio>=0.2.14
+# --- NLP
+transformers>=4.42
+sentencepiece>=0.2
+spacy>=3.7
+es_core_news_md @ https://github.com/explosion/spacy-models/releases/download/es_core_news_md-3.7.0/es_core_news_md-3.7.0.tar.gz
+# --- Utilidades
+tqdm>=4.66
