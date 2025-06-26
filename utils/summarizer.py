@@ -9,12 +9,13 @@ def _get_pipe():
     if _summer is None:
         _summer = pipeline(
             "summarization",
-            model="google/mt5-small",      # multilingüe, liviano
-            tokenizer="google/mt5-small",
+            model="sshleifer/distilbart-cnn-12-6",
+            tokenizer="sshleifer/distilbart-cnn-12-6",
             framework="pt",
             device=0 if torch.cuda.is_available() else -1,
         )
     return _summer
+
 
 def summarize(text: str, max_words: int = 120) -> str:
     pipe = _get_pipe()
