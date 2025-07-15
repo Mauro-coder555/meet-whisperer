@@ -45,16 +45,10 @@ meet-whisperer/
 
 ## 📅 Requisitos
 
-- Python 3.10+
-- `llama-cpp-python`
-- `rapidfuzz`
-- `tkinter`
-
 Instalación de dependencias:
 ```bash
-pip install llama-cpp-python rapidfuzz
+pip install -r requirements.txt
 ```
-(tkinter suele venir con Python por defecto)
 
 ---
 
