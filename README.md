@@ -6,8 +6,8 @@ Cuando detecta uno nuevo, lo procesa automáticamente y guarda el resultado en `
 
 ## Uso
 
-1. Colocá un `.txt` en la carpeta `input/`
-2. Ejecutá `python main.py`
+1. Ejecutá `python main.py`
+2. Colocá un `.txt` de con una transcripción de reunión en la carpeta `input/`
 3. El resultado aparecerá en `output/`
 
 ## Dependencias
