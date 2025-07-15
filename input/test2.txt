@@ -1,0 +1,17 @@
+Bueno, arranquemos. El cliente de WestData quiere ver avances en el ETL del datalake. Nico dijo que estaba probando con dbt, pero no quedó claro si ya lo integró con Bigquery o sigue usando Sheets.
+
+También mencionamos que hay que versionar los scripts en Gitlab, pero Juan confundió el repositorio y subió todo a Google drive.
+
+El martes deberíamos tener la validación de los dashboards de GA4, aunque todavía no está asignado quién los revisa. Creo que Vale podía, pero no lo confirmó.
+
+El Juli avisó que el airflow tiró error en el dag de ingestion por un tema del storage bucket mal seteado.
+
+Agus comentó que el script de normalizacion en python estaba generando filas vacías y eso rompió el join con la tabla de leads.
+
+Acordamos hacer un QA conjunto el jueves a la tarde, pero sin horario fijo.
+
+Ah, y el slack de reporting está medio muerto, se sugirió migrar a Discord pero quedó en veremos.
+
+También surgió si todavía usamos ese excel con fórmulas mágicas que nadie entiende para armar los reports semanales, pero no hubo respuesta.
+
+¿Fede sigue como owner del proyecto? No sé si lo removieron en el último sprint.

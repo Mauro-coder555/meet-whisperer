@@ -1,6 +1,0 @@
-hola, lo del baquen quedó sin resolver. el enpont nuevo para carga masiva lo implementaron ayer a la noche creo, pero no estoy seguro si llegó a deployarse. dijeron que florcencia estaba viendo un error en el login, algo de la ruta apiv1/users, puede ser? 
-además había un comentario sobre si migramos a postgres o seguimos con mySQL, pero nadie tomó decisión todavía. 
-ah, y algo importante, el spint empieza el lunes 15, así que eso tiene que estar listo antes del viernes. también se mencionó que el equipo de QA estaba con muchas pruebas, y puede que se atrase.
-otro tema: morpeoscorp mandó un correo preguntando por el dashbord de performance, que se había roto después del último cambio en el jason de la API.
-nadie sabía quién lo tenía asignado. dijeron que quizás tomás o marcos podían revisarlo. y que marcos también había pedido que se consoliden los datashets del mes pasado.
-también se dijo que había que cargar horas en cloc antes del viarnes, por el cierre contable. eso lo repitieron varias veces.

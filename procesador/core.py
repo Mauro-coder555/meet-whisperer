@@ -18,7 +18,7 @@ MODEL_PATH = "./models/mistral/mistral-7b-instruct-v0.1.Q4_K_M.gguf"
 
 # Inicializar modelo con manejo de errores
 try:
-    llm = Llama(model_path=MODEL_PATH, n_ctx=4096, verbose=False)
+    llm = Llama(model_path=MODEL_PATH, n_ctx=16384, verbose=False)
     logging.info("Modelo cargado exitosamente.")
 except Exception as e:
     logging.error(f"Error al cargar el modelo: {e}")
@@ -43,16 +43,23 @@ def preprocesar_texto(texto):
 def corregir_errores(texto, glosario, umbral=90):
     palabras = re.findall(r'\w+|\S', texto)
     corregidas = []
+
     for i, palabra in enumerate(palabras):
         palabra_limpia = palabra.lower()
+
         if palabra_limpia in glosario:
-            palabras[i] = glosario[palabra_limpia]
-            corregidas.append((palabra_limpia, glosario[palabra_limpia]))
+            corregido = glosario[palabra_limpia]
+            if palabra_limpia != corregido.lower():
+                palabras[i] = corregido
+                corregidas.append((palabra_limpia, corregido))
         else:
             match, score, _ = process.extractOne(palabra_limpia, glosario.keys())
             if score > umbral:
-                palabras[i] = glosario[match]
-                corregidas.append((palabra_limpia, glosario[match]))
+                corregido = glosario[match]
+                if palabra_limpia != corregido.lower():
+                    palabras[i] = corregido
+                    corregidas.append((palabra_limpia, corregido))
+
     return " ".join(palabras), corregidas
 
 def generar_prompt(texto):
@@ -64,7 +71,8 @@ def generar_prompt(texto):
         "2. Identificá todas las tareas mencionadas.\n"
         "   - Si hay responsable y fecha claros, marcá como tarea confirmada.\n"
         "   - Si se menciona la tarea pero el responsable o la fecha son inciertos, marcala como tarea sugerida.\n"
-        "3. Listá decisiones tomadas o postergadas.\n"
+        "   - Solo clasificala como confirmada si en el texto se nombra explícitamente quién la hará y cuándo.\n"
+        "3. Listá decisiones tomadas o postergadas explícitamente.\n"
         "4. Incluí una sección final con ambigüedades, dudas abiertas o cosas no resueltas.\n\n"
         "Generá el informe con esta estructura en Markdown:\n"
         "## Resumen Ejecutivo\n"
@@ -104,13 +112,16 @@ def procesar_transcripcion(path_archivo):
 
     try:
         respuesta = llm(prompt=prompt, max_tokens=2048, stop=["</s>"])
+        if not respuesta or "choices" not in respuesta or not respuesta["choices"]:
+            raise ValueError("La respuesta del modelo está vacía o mal formada.")
         contenido = respuesta["choices"][0]["text"].strip()
     except Exception as e:
         logging.error(f"Error durante la inferencia del modelo: {e}")
         return
 
     nombre_base = os.path.splitext(nombre)[0]
-    output_path = f"output/{nombre_base}_resumen.md"
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    output_path = f"output/{nombre_base}_resumen_{timestamp}.md"
 
     try:
         with open(output_path, "w", encoding="utf-8") as f:

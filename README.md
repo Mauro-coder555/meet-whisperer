@@ -1,17 +1,239 @@
-# Procesador de Reuniones Automatizado
+# 🧠 Meet Whisperer - Procesador de Transcripciones de Reuniones IT
 
-Este proyecto monitorea una carpeta de entrada (`input/`) en busca de archivos `.txt` que contengan transcripciones de reuniones.
+**Meet Whisperer** es una herramienta inteligente para transformar transcripciones caóticas de reuniones en resúmenes claros, estructurados y útiles para equipos de tecnología, datos y producto.
 
-Cuando detecta uno nuevo, lo procesa automáticamente y guarda el resultado en `output/`.
+Detecta tareas, decisiones, ambigüedades, corrige errores técnicos de transcripción y genera reportes profesionales en segundos.
 
-## Uso
+---
 
-1. Ejecutá `python main.py`
-2. Colocá un `.txt` de con una transcripción de reunión en la carpeta `input/`
-3. El resultado aparecerá en `output/`
+## 🚀 Características principales
 
-## Dependencias
+- ✅ Corrección automática de términos técnicos mal transcriptos.
+- ✅ Generación de resumen ejecutivo en formato Markdown.
+- ✅ Identificación de tareas confirmadas y sugeridas.
+- ✅ Detección de decisiones y ambigüedades no resueltas.
+- ✅ Interfaz gráfica minimalista para operar sin código.
+- ✅ 100% offline: sin enviar datos a servidores externos.
+- ✅ Basado en modelos LLM locales (Mistral 7B Instruct GGUF).
 
-```bash
-pip install -r requirements.txt
+---
+
+## 📁 Estructura del proyecto
+
 ```
+meet-whisperer/
+│
+├── core.py                      # Lógica principal de procesamiento y resumen
+├── main.py                      # Interfaz gráfica con tkinter
+├── watcher.py                   # Alternativa para monitoreo automático de la carpeta input
+│
+├── input/                       # Colocar aquí las transcripciones (.txt)
+│   └── test.txt
+│
+├── output/                      # Aquí se generarán los resúmenes .md
+│   └── test_resumen_20250715_152309.md
+│
+├── procesador/
+│   └── glosario_tecnico.json   # Glosario con errores comunes y sus correcciones
+│
+├── models/
+│   └── mistral/                # Carpeta con modelo GGUF local (Mistral 7B)
+│       └── mistral-7b-instruct-v0.1.Q4_K_M.gguf
+```
+
+---
+
+## 📅 Requisitos
+
+- Python 3.10+
+- `llama-cpp-python`
+- `rapidfuzz`
+- `tkinter`
+
+Instalación de dependencias:
+```bash
+pip install llama-cpp-python rapidfuzz
+```
+(tkinter suele venir con Python por defecto)
+
+---
+
+## ⚖️ Uso del programa (modo visual)
+
+1. Ejecutá `main.py`:
+```bash
+python main.py
+```
+2. Se abrirá una pequeña ventana. Seleccioná un archivo `.txt` desde tu computadora.
+3. El sistema lo procesará con el modelo local.
+4. Al terminar, aparecerá un mensaje y un botón para abrir directamente el resumen generado.
+
+---
+
+## 🎨 Ejemplo de salida
+Archivo generado en `output/test_resumen_YYYYMMDD_HHMMSS.md` con formato como:
+
+```markdown
+# Resumen de la reunión
+
+**Archivo procesado**: test.txt
+
+**Fecha de procesamiento**: 2025-07-15 15:23:04
+
+## Resumen Ejecutivo
+- ...
+
+## Tareas Confirmadas
+| Tarea | Responsable | Fecha |
+|-------|-------------|-------|
+| ...   | ...         | ...   |
+
+## Tareas Sugeridas (no confirmadas)
+| Tarea | Responsable posible | Comentario |
+|-------|----------------------|------------|
+| ...   | ...                  | ...        |
+
+## Decisiones
+- ...
+
+## Ambigüedades y Temas No Resueltos
+- ...
+```
+
+---
+
+## 🎓 Autor
+
+Mauro Pereyra
+Estudiante autodidacta de datos & buscador del conocimiento (y del buen resumen).
+
+---
+
+## 🌟 Futuro
+- Exportación a CSV/Excel.
+- Clasificación de oradores.
+- Detección de sentimientos y tono.
+- API local y versión web para equipos.
+
+---
+
+📊 Compartilo en LinkedIn o con tus colegas si te resulta útil :)
+# 🧠 Meet Whisperer - Procesador de Transcripciones de Reuniones IT
+
+**Meet Whisperer** es una herramienta inteligente para transformar transcripciones caóticas de reuniones en resúmenes claros, estructurados y útiles para equipos de tecnología, datos y producto.
+
+Detecta tareas, decisiones, ambigüedades, corrige errores técnicos de transcripción y genera reportes profesionales en segundos.
+
+---
+
+## 🚀 Características principales
+
+- ✅ Corrección automática de términos técnicos mal transcriptos.
+- ✅ Generación de resumen ejecutivo en formato Markdown.
+- ✅ Identificación de tareas confirmadas y sugeridas.
+- ✅ Detección de decisiones y ambigüedades no resueltas.
+- ✅ Interfaz gráfica minimalista para operar sin código.
+- ✅ 100% offline: sin enviar datos a servidores externos.
+- ✅ Basado en modelos LLM locales (Mistral 7B Instruct GGUF).
+
+---
+
+## 📁 Estructura del proyecto
+
+```
+meet-whisperer/
+│
+├── main.py                      # Interfaz gráfica con tkinter
+├── watcher.py                   # Alternativa para monitoreo automático de la carpeta input
+│
+├── input/                       # Colocar aquí las transcripciones (.txt)
+│   └── test.txt
+│
+├── output/                      # Aquí se generarán los resúmenes .md
+│   └── test_resumen_20250715_152309.md
+│
+├── procesador/
+    └──  core.py                # Lógica principal de procesamiento y resumen
+│   └── glosario_tecnico.json   # Glosario con errores comunes y sus correcciones
+│
+├── models/
+│   └── mistral/                # Carpeta con modelo GGUF local (Mistral 7B)
+│       └── mistral-7b-instruct-v0.1.Q4_K_M.gguf
+```
+
+---
+
+## 📅 Requisitos
+
+- Python 3.10+
+- `llama-cpp-python`
+- `rapidfuzz`
+- `tkinter`
+
+Instalación de dependencias:
+```bash
+pip install llama-cpp-python rapidfuzz
+```
+(tkinter suele venir con Python por defecto)
+
+---
+
+## ⚖️ Uso del programa (modo visual)
+
+1. Ejecutá `main.py`:
+```bash
+python main.py
+```
+2. Se abrirá una pequeña ventana. Seleccioná un archivo `.txt` desde tu computadora.
+3. El sistema lo procesará con el modelo local.
+4. Al terminar, aparecerá un mensaje y un botón para abrir directamente el resumen generado.
+
+---
+
+## 🎨 Ejemplo de salida
+Archivo generado en `output/test_resumen_YYYYMMDD_HHMMSS.md` con formato como:
+
+```markdown
+# Resumen de la reunión
+
+**Archivo procesado**: test.txt
+
+**Fecha de procesamiento**: 2025-07-15 15:23:04
+
+## Resumen Ejecutivo
+- ...
+
+## Tareas Confirmadas
+| Tarea | Responsable | Fecha |
+|-------|-------------|-------|
+| ...   | ...         | ...   |
+
+## Tareas Sugeridas (no confirmadas)
+| Tarea | Responsable posible | Comentario |
+|-------|----------------------|------------|
+| ...   | ...                  | ...        |
+
+## Decisiones
+- ...
+
+## Ambigüedades y Temas No Resueltos
+- ...
+```
+
+---
+
+## 🎓 Autor
+
+Mauro Pereyra
+
+---
+
+## 🌟 Futuro
+- Exportación a CSV/Excel.
+- Clasificación de oradores.
+- Detección de sentimientos y tono.
+- API local y versión web para equipos.
+
+---
+
+📊 Compartilo en LinkedIn o con tus colegas si te resulta útil :)
