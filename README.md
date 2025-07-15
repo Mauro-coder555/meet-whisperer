@@ -99,7 +99,6 @@ Archivo generado en `output/test_resumen_YYYYMMDD_HHMMSS.md` con formato como:
 ## 🎓 Autor
 
 Mauro Pereyra
-Estudiante autodidacta de datos & buscador del conocimiento (y del buen resumen).
 
 ---
 
